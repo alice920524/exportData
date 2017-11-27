@@ -18,7 +18,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.myproject.utils.MongoDbUtils;
-import com.myproject.dao.MongoDbDao;
+import com.myproject.dao.MongoDBDao;
 
 /**
  * @Title MongdbController.java

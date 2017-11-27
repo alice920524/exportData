@@ -96,7 +96,7 @@ public class PublicVisit {
             HSSFRow row = sheet.createRow(i + 1);
             VisitDetail detail = (VisitDetail)array.get(i);
             String id = detail.getId();
-            ArrayList visits = detail.getVisits();
+            List visits = detail.getVisits();
             row.createCell(0).setCellValue(id);
             for (int j = 0; j < visits.size(); j++) {
                 LinkedHashMap item = (LinkedHashMap)visits.get(j);

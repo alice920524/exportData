@@ -104,7 +104,7 @@ public class ExportTest {
                                 tabledef.append(tableheader);
                                 System.out.println("TableDef " + tabledef.toString());
                                 //保存到MongoDB
-                                oid = C_MONGODB.saveObjectByJson(tabledef.toString(),wb.getSheetName(k));
+                                oid = C_MONGODB.saveObjectByJson("local", tabledef.toString(), wb.getSheetName(k));
                                 continue;
                             }
                         }
@@ -137,7 +137,7 @@ public class ExportTest {
                         }
                         datastr.deleteCharAt(datastr.length()-1);
                         datastr.append("}");
-                        C_MONGODB.saveObjectByJson(datastr.toString(),wb.getSheetName(k));
+                        C_MONGODB.saveObjectByJson("local", datastr.toString(), wb.getSheetName(k));
                         System.out.println(datastr.toString());
                     }
                 }

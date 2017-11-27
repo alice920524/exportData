@@ -2,7 +2,7 @@ package com.myproject.utils;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.myproject.dao.MongoDbDao;
+import com.myproject.dao.MongoDBDao;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -26,7 +26,7 @@ public class MongoDbUtils {
      * @since 2015年12月30日 下午3:13:37
      */
     public static MongoCollection<Document> getCollection(String dbName,String collName) {
-        return MongoDbDao.INSTANCE.getCollection(dbName, collName);
+        return MongoDBDao.INSTANCE.getCollection(dbName, collName);
     }
 
     /**
@@ -39,7 +39,7 @@ public class MongoDbUtils {
      * @since 2015年12月30日 下午4:08:40
      */
     public static MongoCollection<Document> getDefaultCollection(String collName) {
-        return MongoDbDao.INSTANCE.getDefaultCollection(collName);
+        return MongoDBDao.INSTANCE.getDefaultCollection(collName);
     }
 
     /**
@@ -54,7 +54,7 @@ public class MongoDbUtils {
      */
     public static Document findById(String collName, String id) {
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.findById(coll, id);
+        return MongoDBDao.INSTANCE.findById(coll, id);
     }
 
     /**
@@ -69,7 +69,7 @@ public class MongoDbUtils {
      */
     public static MongoCursor<Document> findByFilter(String collName, Bson filter) {
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.findByFilter(coll, filter);
+        return MongoDBDao.INSTANCE.findByFilter(coll, filter);
     }
 
     /**
@@ -87,7 +87,7 @@ public class MongoDbUtils {
      */
     public static MongoCursor<Document> findByPage(String collName, Bson filter,Bson sort , int pageNo, int pageSize) {
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.findByPage(coll, filter, sort, pageNo, pageSize);
+        return MongoDBDao.INSTANCE.findByPage(coll, filter, sort, pageNo, pageSize);
     }
 
     /**
@@ -101,7 +101,7 @@ public class MongoDbUtils {
      */
     public static int getCount(String collName) {
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.getCount(coll);
+        return MongoDBDao.INSTANCE.getCount(coll);
     }
 
     /**
@@ -116,7 +116,7 @@ public class MongoDbUtils {
      */
     public static int deleteById(String collName, String id) {
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.deleteById(coll, id);
+        return MongoDBDao.INSTANCE.deleteById(coll, id);
     }
 
     /**
@@ -131,7 +131,7 @@ public class MongoDbUtils {
      */
     public static int deleteByFilter(String collName, Bson filter){
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.deleteByFilter(coll, filter);
+        return MongoDBDao.INSTANCE.deleteByFilter(coll, filter);
     }
 
     /**
@@ -147,7 +147,7 @@ public class MongoDbUtils {
      */
     public static int updateById(String collName, String id, Document newdoc) {
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.updateById(coll, id, newdoc);
+        return MongoDBDao.INSTANCE.updateById(coll, id, newdoc);
     }
 
     /**
@@ -163,7 +163,7 @@ public class MongoDbUtils {
      */
     public static int updateByFilter(String collName,  Bson filter, Document newdoc){
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        return MongoDbDao.INSTANCE.updateByFilter(coll, filter, newdoc);
+        return MongoDBDao.INSTANCE.updateByFilter(coll, filter, newdoc);
     }
 
     /**
@@ -177,7 +177,7 @@ public class MongoDbUtils {
      */
     public static void insertOne(String collName, Document document){
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        MongoDbDao.INSTANCE.insertOne(coll, document);;
+        MongoDBDao.INSTANCE.insertOne(coll, document);;
     }
 
     /**
@@ -191,7 +191,7 @@ public class MongoDbUtils {
      */
     public static void insertMany(String collName, List<Document> documents){
         MongoCollection<Document> coll = getDefaultCollection(collName);
-        MongoDbDao.INSTANCE.insertMany(coll, documents);
+        MongoDBDao.INSTANCE.insertMany(coll, documents);
     }
 }
 
