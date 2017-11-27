@@ -110,6 +110,13 @@
             <version>3.14</version>
         </dependency>
         <!--poi-->
+        <!--com.alibaba-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.32</version>
+        </dependency>
+        <!--com.alibaba-->
     </dependencies>
 
 
