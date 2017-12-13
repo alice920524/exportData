@@ -111,13 +111,22 @@ public class PublicVisit {
 
     /**
      * 根据查询条件，从Mongo中获取数据
+     * @param collectionName 集合名称（不同类别订单按集合存储）
      * @return
      * @throws IOException
      */
-    public static JSONArray getAll() throws IOException {
+    public static JSONArray getAll(String collectionName) throws IOException {
         JSONArray array = new JSONArray();
         BasicDBObject query = new BasicDBObject();
-        query.put("oid", "5a17d9115e16e636d2062c7b");
+        if ("one_one".equals(collectionName)) {
+            query.put("oid", "5a17d9115e16e636d2062c7b");
+        } else if ("one_more".equals(collectionName)) {
+            query.put("oid", "5a17d9115e16e636d2062c7b");
+        } else if ("more".equals(collectionName)) {
+            query.put("oid", "5a17d9115e16e636d2062c7b");
+        } else {
+
+        }
         DBCursor cursor = visit.find(query);
         if (cursor != null) {
             array.add(cursor.toArray());
@@ -125,9 +134,24 @@ public class PublicVisit {
         return array;
     }
 
-    public static void exportAsExcel(JSONArray array, String path) {
+    /**
+     * 操作导出数据
+     * @param array 查询到的结果集
+     * @param path 导出后的文件
+     * @param collectionName 集合名称（不同类别订单按集合存储）
+     */
+    public static void exportAsExcel(JSONArray array, String path, String collectionName) {
         HSSFWorkbook wb = new HSSFWorkbook();
-        HSSFSheet sheet = wb.createSheet("访问记录");
+        HSSFSheet sheet = null;
+        if ("one_one".equals(collectionName)) {
+            sheet = wb.createSheet("一单一班");
+        } else if ("one_more".equals(collectionName)) {
+            sheet = wb.createSheet("一单多班");
+        } else if ("more".equals(collectionName)) {
+            sheet = wb.createSheet("多班");
+        } else {
+
+        }
         HSSFCellStyle style = wb.createCellStyle();
         style.setAlignment((short)2);
         HSSFRow row0 = sheet.createRow(0);
@@ -217,7 +241,7 @@ public class PublicVisit {
             idsPath = "E:/exportDoc/";
         }
         System.out.println(">>>>>>>>>你的输入：" + idsPath);*/
-        JSONArray array = getAll();
+        JSONArray array = getAll(collection);
         System.out.println("统计到的数据为：\n" + array);
         if (array == null || array.isEmpty()) {
             System.out.println("未查询到任何有效数据，表格导出失败！");
@@ -234,7 +258,7 @@ public class PublicVisit {
                 newFileName = scanner.nextLine();
             }
             System.out.println(">>>>>>>>>你的输入：" + newFileName);
-            exportAsExcel(array, path+newFileName);
+            exportAsExcel(array, path+newFileName, collection);
             System.out.println("表格导出完成");
         }
         destory();
